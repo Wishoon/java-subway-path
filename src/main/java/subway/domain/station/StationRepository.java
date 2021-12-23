@@ -1,4 +1,4 @@
-package subway.domain;
+package subway.domain.station;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -22,5 +22,12 @@ public class StationRepository {
 
     public static void deleteAll() {
         stations.clear();
+    }
+
+    public static Station findStation(String name) {
+        return stations.stream()
+            .filter(station -> station.equalsName(name))
+            .findAny()
+            .orElseThrow(() -> new IllegalArgumentException(name + "은 존재하지 않습니다."));
     }
 }
